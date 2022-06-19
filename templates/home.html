@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block content %} {% include 'nav.html' %} {% load static %}
+
+ <section class="section">
+    <section class="container">
+        {% if user.is_authenticated == False %}
+        <div class="card z-depth-2">
+            <div class="card-content">
+                <h5>Notice</h5>
+                <p class="custom-font-1">You must have a registered account and be logged in, in order to view and place bids within our Bidding Store.</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="card z-depth-2">
+            <div class="card-content">
+                
+                <h3><center>The Bidding Store</center></h3>
+
+                <p class="custom-font-1">A bidding system in contract bridge is the set of agreements and understandings assigned to calls and sequences of calls used by a partnership, and includes a full description of the meaning of each treatment and convention.</p>
+                <a href="{% url 'app:placements' %}" class="btn waves-effect waves-light pink" style="margin-top: 1rem;">
+                        <i class="material-icons left">store</i>visit Bidding Store</a>
+                <img class="responsive-img fade-in" src="{% static 'austin-distel-1555609-unsplash.jpg' %}" alt="">
+            </div>
+        </div>
+
+
+        <div class="card z-depth-2">
+            <div class="card-content">
+                <h5><center>
+                   MAC</center>
+                </h5>
+                <p class="custom-font-1">The System Information app provides detailed specifications and other information about your Mac hardware and software, including your network and external devices. In some versions of OS X, this app is called System Profiler.</p>
+                <p class="custom-font-1"><br>
+                    macOS is the operating system that powers every Mac. It lets you do things you simply can't do with other computers. That's because it's designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps.</p>
+                <p class="custom-font-1"><br>Apple macOS can be simpler to use, but that depends on personal preference. Windows 10 is a fantastic operating system with tons of features and functionality, but it can be a little cluttered. Apple macOS, the operating system formerly known as Apple OS X, offers a comparatively clean and simple experience.</p>
+                <center><img class="responsive-img fade-in" src="{% static 'MAC.jpeg' %}" alt=""></center>
+            </div>
+        </div>
+
+        <div class="card z-depth-2">
+            <div class="card-content">
+                <h5><center>
+                    Iphone</center>
+                </h5>
+                <p class="custom-font-1">Apple's iPhone 13 features a ceramic shield front, Super Retina XDR display with True Tone and an A15 Bionic chip. The first design change users will notice is the smaller notch. After years of using the same-sized notch to house the Face ID components, Apple has finally reduced its size by 20%.</p>
+                <p class="custom-font-1"><br>The iPhone 13 and 13 Mini have better battery life, better cameras and a newer processor than last year's iPhone 12 and 12 Mini. Overall both the iPhone 13 and 13 Mini are excellent phones for most people, which is why we've given them a CNET Editors' Choice Award.</p>
+                <p class="custom-font-1"><br>
+                    Image result
+                    Every iPhone 12 and iPhone 13 comes with a USB-C-to-Lightning cable, and that's pretty much it. So out of the box, those who don't currently have any Apple power adapters will need a USB-C power adapter to charge the iPhone 12 and 13.</p>
+                <center><img class="responsive-img fade-in" src="{% static 'Iphone 13pro.jpg' %}" alt=""></center>
+            </div>
+        </div>
+
+        <div class="card z-depth-2">
+            <div class="card-content">
+                <h5>
+                    Nike
+                </h5>
+                <p class="custom-font-1">Nike, Inc. is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services. The company is headquartered near Beaverton, Oregon, in the Portland metropolitan area.</p>
+                <p class="custom-font-1"><br>Nike, Inc., formerly (1964–78) Blue Ribbon Sports, American sportswear company headquartered in Beaverton, Oregon. It was founded in 1964 as Blue Ribbon Sports by Bill Bowerman, a track-and-field coach at the University of Oregon, and his former student Phil Knight. They opened their first retail outlet in 1966 and launched the Nike brand shoe in 1972. The company was renamed Nike, Inc., in 1978 and went public two years later. By the early 21st century, Nike had retail outlets and distributors in more than 170 countries, and its logo—a curved check mark called the “swoosh”—was recognized throughout the world.</p>
+                <p class="custom-font-1"><br>From the late 1980s Nike steadily expanded its business and diversified its product line through numerous acquisitions, including the shoe companies Cole Haan (1988; sold in 2012) and Converse, Inc. (2003), the sports-equipment producer Canstar Sports, Inc. (1994; later called Bauer and sold in 2008), and the athletic apparel and equipment company Umbro (2008; sold in 2012). In 1996 the company created Nike ACG (“all-conditions gear”), which markets products for extreme sports such as snowboarding and mountain biking. In the early 21st century Nike began selling sports-technology accessories, including portable heart-rate monitors and high-altitude wrist compasses.</p>
+                <center><img class="responsive-img fade-in" src="{% static 'NIKE.jpeg' %}" alt=""></center>
+            </div>
+        </div>  
+        
+    </section>
+</section>
+
+    
+
+{% include 'footer.html' %} {% endblock content %}
