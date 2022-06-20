@@ -12,9 +12,8 @@
             <div class="card">
                     <div class="card-content">
                         <h3><center>{{ placement.placement_title }}</center></h3>
-                        <center><img src=  {{ placement.picture.url }} width=50% height=50% /></center>
+                        <center><img src=  {{ placement.picture.url }} width=60% /></center>
                         <center><p class="chip indigo white-text" style="font-size:25px">{{ placement.placement_company }}</p></center>
-                        
                         <p>{{placement.placement_company.company_description}}</p>
 
                     </div>
@@ -28,8 +27,9 @@
                <label for="">
                    Products Quantity
                </label>
-
-               <input name="quantity" required id="quantity" type="number" min="1" max="p">
+               <br>
+               {{ placement.total_pieces }}
+               <br>
 
                <label for="">
                    Amount ($)

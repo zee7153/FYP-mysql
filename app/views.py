@@ -73,9 +73,8 @@ def placement_detail(request, placement_slug):
     placement = get_object_or_404(Placement, placement_slug=placement_slug)
 
     if request.method == 'POST':
-        submitted_quantity = request.POST.get('quantity')
+        submitted_quantity = placement.total_pieces
         submitted_amount = request.POST.get('amount')
-
         # Create or store Bid object based on conditional
         bid_queryset = Bid.objects.filter(user=request.user, bid_status=False)
         

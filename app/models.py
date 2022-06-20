@@ -8,8 +8,8 @@ class Company(models.Model):
     Simply contains company details, referenced by Placement model
     """
 
-    company_name = models.CharField(max_length=255,default='SOME STRING')
-    company_address = models.CharField(max_length=255,default='SOME STRING')
+    company_name = models.CharField(max_length=255,default='Add Company Name')
+    company_address = models.CharField(max_length=255,default='Add Company address')
     company_description = models.TextField(default="There is currently no description available for this company.")
     # company_Price = models.DecimalField(max_digits=5,decimal_places=2)
     # company_Picture= models.URLField(blank=False,null=False)
@@ -25,7 +25,7 @@ class Placement(models.Model):
     A placement allows investors to bid on company capital raise
     """
 
-    placement_title = models.CharField(max_length=255,default='SOME STRING')
+    placement_title = models.CharField(max_length=255,default='Add Bid-item Title')
     placement_slug = models.SlugField()
     placement_company = models.ForeignKey(Company, on_delete=models.CASCADE)
     price=models.IntegerField(default=0)
@@ -45,7 +45,7 @@ class Bid(models.Model):
     The bid, synonmous with 'order'
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    bid_status = models.BooleanField()
+    bid_status = models.BooleanField(default=False)
 
     bid_created = models.DateTimeField(auto_now_add=True)
     bid_modified = models.DateTimeField(auto_now=True)
@@ -62,8 +62,8 @@ class PlacementBid(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     placement = models.ForeignKey(Placement, on_delete=models.CASCADE)
     bid  = models.ForeignKey(Bid, on_delete=models.CASCADE)
-    offer = models.IntegerField()
-    shares = models.IntegerField()
+    offer = models.IntegerField(default=0)
+    shares = models.IntegerField(default=0)
     confirmed = models.BooleanField(default=False)
     
     placementbid_created = models.DateTimeField(auto_now_add=True)

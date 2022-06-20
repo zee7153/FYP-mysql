@@ -15,7 +15,6 @@
                             <th>Timestamp</th>
                             <th>$ Bidded</th>
                             <th>Quantity</th>
-                            <th>Bid Details</th>
                             <th>Seller Details</th>
                         </tr>
                     </thead>
@@ -27,8 +26,7 @@
                                 <td>{{ b.placementbid_created }}</td>
                                 <td>{{ b.offer}}</td>
                                 <td>{{ b.shares}}</td>
-                                <td><a href="{% url 'app:Seller_profile'%}" style="margin-top: 1rem;" class="btn pink waves-effect waves-light">View Details</a></td>
-                                <td>{% if b.confirmed %}<a href="{% url 'app:Seller_profile' %}" style="margin-top: 1rem;" class="btn waves-light waves-effect pink">Details</a>{%else%} <span class="chip indigo darken-2 white-text">Unconfirmed</span>       {%endif%} </td>
+                                <td>{% if b.confirmed %}<a href="{% url 'app:Seller_profile' %}" style="margin-top: 1rem;" ><span class="chip indigo light-2 white-text">Confirmed Bid</span>       </a>{%else%} <span class="chip indigo light-2 white-text">Unconfirmed</span>       {%endif%} </td>
                             </tr>
                         {% endfor %}
                     </tbody>
