@@ -74,7 +74,10 @@ def placement_detail(request, placement_slug):
 
     if request.method == 'POST':
         submitted_quantity = placement.total_pieces
-        submitted_amount = request.POST.get('amount')
+        submitted_amount = int(request.POST.get('amount'))
+        if(submitted_amount<placement.price):
+            submitted_amount=placement.price
+        #print(type(submitted_amount))
         # Create or store Bid object based on conditional
         bid_queryset = Bid.objects.filter(user=request.user, bid_status=False)
         
@@ -89,6 +92,7 @@ def placement_detail(request, placement_slug):
                                                     bid=bid,
                                                     offer=submitted_amount,
                                                     shares=submitted_quantity)
+        
         return redirect('app:bid-summary')
 
     context = {'placement': placement}
