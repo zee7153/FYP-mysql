@@ -1,0 +1,22 @@
+BOT_MESSAGES = {
+    "mobile": "Hi, welcome to YoYo Pizza! Please share your 10 digit mobile number.",
+    "ask_mobile": "Please share your 11 digit mobile number.",
+    "incorrect_mobile": "Oops, that looks like an invalid mobile number. Please enter a valid 10 digit number.",
+    "first_question": "How can I help you?<br>1. Place a bid <br>2. check bid status",
+    "order_id": "Please share your Order ID.",
+    "pizza_choices": "Please select your choice of Pizza.<br>1. Mexican Delight<br>2. Tofu Supreme<br>3. Margherrita<br>4. Farmhouse",
+    "size_options": "Which would you prefer?<br>1. Regular<br>2. Medium<br>3. Large",
+    "base_options": "Please choose the base,<br>1. Wheat<br>2. Multigrain<br> 3. Normal",
+    "name": "What's your name?",
+    "address": "Please share your address",
+    "thanks-bye": "<br><br>Thanks for talking, bye. :)",
+    "user-whatsup": ["what's up?", "whats up", "wassup"],
+    "bot-whatsup": ["Not much. What's new with you?", "Living the dream."],
+    "user-hello": ["hey", "hi", "hello", "heya", "hey there"],
+    "bot-hello": ["Hi there, friend!", "Howdy", "Good day!"],
+    "user-bye": ["ok bye", "bye", "bye-bye"],
+    "bot-bye": ["Thanks for talking, bye.", "Bye!", "Bye, have a nice day!"],
+    "user-greeting": ["how have you been", "how are you?", "how's life", "how was your day?", "how are you doing"],
+    "bot-greeting": ["Lovely, thanks.", "Wonderful as always. Thanks for asking.", "Can't complain at all."],
+    "invalid_order": "Sorry, no orders exist with the ID you provided. What would you like to do?<br>1. Order a pizza<br>2. Track my order"
+}
