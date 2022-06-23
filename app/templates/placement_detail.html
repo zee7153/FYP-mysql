@@ -27,12 +27,19 @@
                <label for="">
                    Products Quantity
                </label>
+
                <br>
                {{ placement.total_pieces }}
                <br>
 
                <label for="">
-                   Amount ($)
+                   Minimum Bid ($)
+               </label>
+               <br>
+               {{ placement.price }}
+               <br>
+               <label for="">
+                   Your Bid ($)
                </label>
 
                <input name="amount" required id="amount" type="number">
@@ -40,26 +47,6 @@
             </form>
            </div>
        </div>
-
-
-       <div class="card">
-            <div class="card-content">
-                <h5><center>Summary</center></h5>
-                <ul class="collection">
-                    <li class="collection-item">Number of Products (#)
-                        <span class="secondary-content" id='span-shares'></span>
-                    </li>
-                    <li class="collection-item">Total Amount Bidded ($)
-                            <span class="secondary-content" id='span-amount'></span>
-                    </li>
-                    <li class="collection-item">Average Bid Per Products ($)
-                            <span class="secondary-content" id='span-average'></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-</section>
 
 
 

@@ -90,26 +90,26 @@ animateValue("total_offers", 0, {{ total_offers }}, 500);
             data: {
                 labels: {{ top_5_offer_names|safe }},
                 datasets: [{
-                    label: '# of offers',
+                    label: 'Amount $',
                     data:{{ top_5_offer_values|safe }},
                     backgroundColor: 'rgba(48, 63, 159, 1)',
-                    borderWidth: 1
+                    borderWidth: 0.5
                 }]
             },
             options: {
                 legend: {
-                    display: false
+                    display: true
                 },
                 scales: {
                     yAxes: [{
-                        gridLines: {display:false},
+                        gridLines: {display:true},
                         ticks: {
                             beginAtZero: true,
                             maxTicksLimit: 5
                         }
                     }],
                     xAxes: [{
-                        gridLines: {display:true,  color:'#F5F5F5'},
+                        gridLines: {display:true,  color:'#F5F5F2'},
                         ticks: {
                             beginAtZero: true,
                             maxTicksLimit: 6

@@ -1,13 +1,15 @@
 # pizza/consumers.py
 from channels.generic.websocket import WebsocketConsumer
 import json
-from .models import myuser, Order
+from .models import User, Order
+from django.contrib.auth.models import User
 from .bot_messages import BOT_MESSAGES
 import random
 from datetime import datetime
 
-
-order_statuses = {1: "being prepared", 2: "being packed", 3: "out for delivery", 4: "delivered"}
+#print("saad",User)
+#print(User)
+order_statuses = {1: "being proceed", 2: "being Check by Seller", 3: "Check status of Bid", 4: "Done"}
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
@@ -28,51 +30,88 @@ class ChatConsumer(WebsocketConsumer):
             if message.isdigit() and len(message) == 11:
                 self.mobile = int(message)
                 try:
-                    user_exists = myuser.objects.get(phone=int(message))
-                    user_details = user_exists.__dict__
-                    self.bot_message = "Welcome, {}.\n".format(user_details.get("name"))
+                    #print(self.username)
+                    self.bot_message = "Welcome, To chat-bot \n"
+                    self.bot_message += "\n"
                     self.bot_message += BOT_MESSAGES.get("first_question")
                 except Exception:
-                    self.bot_message = BOT_MESSAGES.get("name")
+                    self.bot_message = BOT_MESSAGES.get(User.username)
             else:
                 if self.talk_to_bot(message):
                     self.bot_message = BOT_MESSAGES.get("incorrect_mobile")
 
         elif self.bot_message == BOT_MESSAGES.get("name"):
             self.name = message
-            self.bot_message = BOT_MESSAGES.get("address")
+            self.bot_message = BOT_MESSAGES.get("first_question")
 
         elif self.bot_message == BOT_MESSAGES.get("address"):
             self.address = message
-            push_user_details = myuser(name=self.name, phone=self.mobile, address=self.address)
-            push_user_details.save()
+            #push_user_details = myuser(name=self.name, phone=self.mobile, address=self.address)
+            #push_user_details.save()
             self.bot_message = BOT_MESSAGES.get("first_question")
 
         elif BOT_MESSAGES.get("first_question") in self.bot_message:
             if message.lower() in ["1", "Place a bid", "order"]:
-                self.bot_message = BOT_MESSAGES.get("pizza_choices")
+                self.bot_message = BOT_MESSAGES.get("second_question")
             elif message.lower() in ["2", "Check my bid status", "track"]:
-                self.bot_message = BOT_MESSAGES.get("order_id")
-            else:
-                self.bot_message = BOT_MESSAGES.get("first_question")
-
-        elif self.bot_message == BOT_MESSAGES.get("pizza_choices"):
-            if message.lower() in ["1", "2", "3", "4", "mexican delight", "tofu supreme", "margherrita", "farmhouse"]:
-                self.bot_message = BOT_MESSAGES.get("base_options")
-            else:
-                self.bot_message = BOT_MESSAGES.get("first_question")
-
-        elif self.bot_message == BOT_MESSAGES.get("base_options"):
-            if message.lower() in ["1", "2", "3", "wheat", "multigrain", "normal"]:
-                self.bot_message = BOT_MESSAGES.get("size_options")
-            else:
-                self.bot_message = BOT_MESSAGES.get("base_options")
-
-        elif self.bot_message == BOT_MESSAGES.get("size_options"):
-            if message.lower() in ["1", "2", "3", "regular", "medium", "large"]:
-                random_order_id = self.create_order()
-                self.bot_message = "Your order has been placed. Here's your order ID: {}.\n".format(random_order_id)
+                self.bot_message = BOT_MESSAGES.get("bid-check")
                 self.bot_message += BOT_MESSAGES.get("thanks-bye")
+            else:
+                self.bot_message = BOT_MESSAGES.get("first_question")
+
+        elif self.bot_message == BOT_MESSAGES.get("second_question"):
+            if message.lower() in ["1", "Laptop"]:
+                self.bot_message = BOT_MESSAGES.get("Laptop")
+            elif(message.lower() in ["2", "Mobile"]):
+                self.bot_message = BOT_MESSAGES.get("mobile_bid")
+            else:
+                self.bot_message = BOT_MESSAGES.get("first_question")
+
+        elif self.bot_message == BOT_MESSAGES.get("mobile_bid"):
+            if message.lower() in ["1", "Apple"]:
+                self.bot_message = BOT_MESSAGES.get("mobile_b")
+            else:
+                self.bot_message = BOT_MESSAGES.get("first_question")
+
+        elif self.bot_message == BOT_MESSAGES.get("mobile_b"):
+            if (int(message)<500):
+                self.bot_message = "Sorry your range is too low"
+                self.bot_message += BOT_MESSAGES.get("thanks-bye")
+            else:
+                self.bot_message = BOT_MESSAGES.get("mob_quantity")
+
+        elif self.bot_message == BOT_MESSAGES.get("mob_quantity"):
+            if (int(message)<10):
+                self.bot_message = "Sorry your quantity is too low"
+                self.bot_message += BOT_MESSAGES.get("thanks-bye")
+            else:
+                self.bot_message = "Check link below:) "
+                self.bot_message += BOT_MESSAGES.get("apple-link")
+                self.bot_message += BOT_MESSAGES.get("thanks-bye")
+
+
+        elif self.bot_message == BOT_MESSAGES.get("Laptop"):
+            if message.lower() in ["1", "HP"]:
+                self.bot_message = BOT_MESSAGES.get("Laptop_bid")
+            else:
+                self.bot_message = BOT_MESSAGES.get("first_question")
+
+        elif self.bot_message == BOT_MESSAGES.get("Laptop_bid"):
+            if (int(message)<1000):
+                self.bot_message = "Sorry your range is too low"
+                self.bot_message += BOT_MESSAGES.get("thanks-bye")
+            else:
+                self.bot_message = BOT_MESSAGES.get("quantity")
+
+        elif self.bot_message == BOT_MESSAGES.get("quantity"):
+            if (int(message)<40):
+                self.bot_message = "Sorry your quantity is too low"
+                self.bot_message += BOT_MESSAGES.get("thanks-bye")
+            else:
+                self.bot_message = "Check link below :)"
+                self.bot_message += BOT_MESSAGES.get("hp-link")
+                self.bot_message += BOT_MESSAGES.get("thanks-bye")
+
 
         elif self.bot_message == BOT_MESSAGES.get("order_id"):
             if message.isdigit():

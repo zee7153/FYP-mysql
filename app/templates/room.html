@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'nav.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -287,4 +291,7 @@
       background-size: 100%;
       background-image: url("https://thumbs.dreamstime.com/b/female-hand-holding-smartphone-to-enter-price-bid-via-wireless-network-blue-bokeh-background-auction-icon-concept-143712536.jpg");
     }   
+  </style>
 </html>
+{% include 'footer.html' %}
+{% endblock content %}

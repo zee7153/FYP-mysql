@@ -43,7 +43,6 @@ def login(request):
 
 
 def home(request):
-
     return render(request, 'placements.html')
 
 
@@ -174,6 +173,6 @@ def Seller_profile(request):
 
  return render(request, 'Seller_profile.html')
 
- 
+@login_required
 def room(request):
     return render(request, 'room.html', {})

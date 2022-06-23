@@ -14,6 +14,7 @@ class DateTimeAbstract(models.Model):
 
     class Meta:
         abstract = True
+        
 class myuser(models.Model):
     name = models.CharField(max_length=100)
     phone = models.IntegerField(unique=True)
